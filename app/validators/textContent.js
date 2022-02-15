@@ -1,30 +1,50 @@
 const getTextScore = (el, dataObj) => {
-  let score = 0;
-  const attrs = element.attributes ? [...element.attributes] : [];
+  const { content } = dataObj;
+  const currentElementText = [...el.childNodes]
+    .filter((node) => node.nodeType === Node.TEXT_NODE)
+    .map((node) => node.textContent);
 
-  score = someAttrNames(attrs, dataObj);
+  score = similarity(content, currentElementText) * 10;
 
   return score;
 };
 
-const someAttrNames = (attrs, dataObj) => {
-  let similarAttrsScore;
-  let similarAttrsValueScore;
-  const attrScore = 5 / attrs.length;
-  const { attributes } = dataObj;
+function editDistance(s1, s2) {
+  s1 = s1.toLowerCase();
+  s2 = s2.toLowerCase();
 
-  attrs.forEach((attr) => {
-    if (dataObj.attributes.findIndex(attr)) {
-      if (sameAttrValue(attr, attributes[idx])) {
-        similarAttrsValueScore += attrScore;
+  var costs = new Array();
+  for (var i = 0; i <= s1.length; i++) {
+    var lastValue = i;
+    for (var j = 0; j <= s2.length; j++) {
+      if (i == 0) costs[j] = j;
+      else {
+        if (j > 0) {
+          var newValue = costs[j - 1];
+          if (s1.charAt(i - 1) != s2.charAt(j - 1))
+            newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
+          costs[j - 1] = lastValue;
+          lastValue = newValue;
+        }
       }
-      similarAttrsScore += attrScore;
     }
-  });
+    if (i > 0) costs[s2.length] = lastValue;
+  }
+  return costs[s2.length];
+}
 
-  return similarAttrsScore + similarAttrsValueScore;
-};
-
-const sameAttrValue = (attr1, attr2) => {
-  return attr1.value === attr2.value;
-};
+function similarity(s1, s2) {
+  var longer = s1;
+  var shorter = s2;
+  if (s1.length < s2.length) {
+    longer = s2;
+    shorter = s1;
+  }
+  var longerLength = longer.length;
+  if (longerLength == 0) {
+    return 1.0;
+  }
+  return (
+    (longerLength - editDistance(longer, shorter)) / parseFloat(longerLength)
+  );
+}
