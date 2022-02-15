@@ -1,4 +1,4 @@
-export const getAttrsScore = (el, dataObj) => {
+const getAttrsScore = (el, dataObj) => {
   let score = 0;
   const attrs = element.attributes ? [...element.attributes] : [];
 
@@ -10,7 +10,7 @@ export const getAttrsScore = (el, dataObj) => {
 const someAttrNames = (attrs, dataObj) => {
   let similarAttrsScore;
   let similarAttrsValueScore;
-  const attrScore = 5 / attrs.length;
+  const attrScore = 50 / attrs.length;
   const { attributes } = dataObj;
 
   attrs.forEach((attr) => {
