@@ -2,6 +2,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     saveErrorInDB();
 
+    
+
 });
 
 const saveErrorInDB = () => {

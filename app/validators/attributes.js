@@ -1,4 +1,4 @@
-const getAttrsScore = (el, dataObj) => {
+export const getAttrsScore = (el, dataObj) => {
   let score = 0;
   const attrs = element.attributes ? [...element.attributes] : [];
 
