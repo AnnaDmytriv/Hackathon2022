@@ -3,6 +3,8 @@ import { getAttrsScore } from "../validators/attributes";
 import { getParentsScore } from "../validators/parents";
 import { getPOsitionScore } from "../validators/position";
 import { getTagNameScore } from "../Validators/tagName";
+import { getChildrenScore } from "../Validators/children";
+import { getTextScore } from "../Validators/textContent";
 
 export const getFinalScore = (currEl, oldEl) => {
 
@@ -22,8 +24,16 @@ export const getFinalScore = (currEl, oldEl) => {
         weight: SCORE.TAG,
         score: getTagNameScore(currEl, oldEl)
     };
+    const childrenScore = {
+        weight: SCORE.CHILDREN,
+        score: getChildrenScore(currEl, oldEl)
+    };
+    const contentScore = {
+        weight: SCORE.CONTENT,
+        score: getTextScore(currEl, oldEl)
+    };
 
-    return weightScore([attrScore, parentScore, positionScore, tagScore]);
+    return weightScore([attrScore, parentScore, positionScore, tagScore, childrenScore, contentScore]);
 };
 
 const weightScore = (validatorsArray) => {
