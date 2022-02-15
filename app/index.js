@@ -12,7 +12,7 @@ const saveErrorInDB = () => {
     const absX = elmRect.left - bodyRect.left;
     const absY = elmRect.top - bodyRect.top;
 
-    const elementText = [...elWithError.childNodes].filter(node => node.nodeType === Node.TEXT_NODE).map(node => node.textContent)
+    const elementText = [...elWithError.childNodes].filter(node => node.nodeType === Node.TEXT_NODE).map(node => node.textContent).join('')
 
     const error = {
         tag: elWithError.tagName,

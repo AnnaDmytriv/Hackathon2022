@@ -2,14 +2,15 @@ const getTextScore = (el, dataObj) => {
   const { content } = dataObj;
   const currentElementText = [...el.childNodes]
     .filter((node) => node.nodeType === Node.TEXT_NODE)
-    .map((node) => node.textContent);
+    .map((node) => node.textContent)
+    .join('');
 
   score = similarity(content, currentElementText) * 10;
 
   return score;
 };
 
-function editDistance(s1, s2) {
+const editDistance = (s1, s2) => {
   s1 = s1.toLowerCase();
   s2 = s2.toLowerCase();
 
@@ -31,9 +32,9 @@ function editDistance(s1, s2) {
     if (i > 0) costs[s2.length] = lastValue;
   }
   return costs[s2.length];
-}
+};
 
-function similarity(s1, s2) {
+const similarity = (s1, s2) => {
   var longer = s1;
   var shorter = s2;
   if (s1.length < s2.length) {
@@ -47,4 +48,4 @@ function similarity(s1, s2) {
   return (
     (longerLength - editDistance(longer, shorter)) / parseFloat(longerLength)
   );
-}
+};
