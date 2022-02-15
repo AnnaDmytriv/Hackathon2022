@@ -14,7 +14,7 @@ const saveErrorInDB = () => {
 
     const error = {
         tag: elWithError.tagName,
-        attributes: elWithError.attributes,
+        attributes: [...elWithError.attributes],
         parents: elWithError.parentElement.tagName,
         children: elWithError.children.length,
         content: elWithError.innerHTML,
