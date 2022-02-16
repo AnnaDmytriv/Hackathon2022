@@ -23,6 +23,9 @@ export const saveErrorInDB = (elWithError) => {
     const absX = elmRect.left - bodyRect.left;
     const absY = elmRect.top - bodyRect.top;
 
+    window.elPostion ={x: absX,
+        y: absY};
+
     const elementText = [...elWithError.childNodes].filter(node => node.nodeType === Node.TEXT_NODE).map(node => node.textContent).join('')
     
 

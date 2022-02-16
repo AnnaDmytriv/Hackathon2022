@@ -12,7 +12,9 @@ export const getPositionScore = (currEl, oldEl)=>{
     const xDiff = Math.abs(currX - oldX);
 
     let score;
-    if(currX == oldX && currY == oldY){
+    if(yDiff < 1 && xDiff < 1){
+        score = 100;
+    }else if(currX == oldX && currY == oldY){
         score = 100;
     }else if(currX == oldX && currY != oldY){
        score = yDiff > 200 ? 20 : 70;  

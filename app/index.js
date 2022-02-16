@@ -1,16 +1,18 @@
-import { addAttrToParent, changeParentTag } from './scripts/parents';
+import { addAttrToParent } from './scripts/parents';
 import { detectElement } from './services/elementDetector';
 import { getErrorElements, saveErrorInDB } from './services/storage';
 import { rotateElements } from './scripts/rotateImages';
 import { manipulators } from './shared/consts';
+import { samePosition } from './scripts/position';
 
 const elWithError = document.querySelector(
   "img[src='images/5.webp']"
 ).parentElement;
 
-
 saveErrorInDB(elWithError);
+
 const errors = getErrorElements();
+
 errors.forEach((err) => {
   detectElement(err);
 });
@@ -24,11 +26,11 @@ function manipulateDom(manipulation) {
   });
 
   console.log(
-    'window._HACKATHON("addAttrToParent") || window._HACKATHON("changeParentTag") || window._HACKATHON("rotateElements")'
+    'window._HACKATHON("addAttrToParent") || window._HACKATHON("rotateElements")'
   );
 }
 
 window._HACKATHON = manipulateDom;
 console.log(
-  'window._HACKATHON("addAttrToParent") || window._HACKATHON("changeParentTag") || window._HACKATHON("rotateElements")'
+  'window._HACKATHON("addAttrToParent") || window._HACKATHON("rotateElements")'
 );
