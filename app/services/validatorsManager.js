@@ -1,7 +1,7 @@
 import { SCORE } from "../consts/validatorScores";
 import { getAttrsScore } from "../validators/attributes";
 import { getParentsScore } from "../validators/parents";
-import { getPOsitionScore } from "../validators/position";
+import { getPositionScore } from "../validators/position";
 import { getTagNameScore } from "../Validators/tagName";
 import { getChildrenScore } from "../Validators/children";
 import { getTextScore } from "../Validators/textContent";
@@ -18,7 +18,7 @@ export const getFinalScore = (currEl, oldEl) => {
     };
     const positionScore = {
         weight: SCORE.POSITION,
-        score: getPOsitionScore(currEl, oldEl)
+        score: getPositionScore(currEl, oldEl)
     };
     const tagScore = {
         weight: SCORE.TAG,
