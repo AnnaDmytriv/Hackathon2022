@@ -1,9 +1,10 @@
+import { getNodeAttributes } from "../shared/utils";
 import { getTagNameScore } from "./tagName";
 
 export const getParentsScore = (currParent, oldParent)=>{
 
     let score;
-    const elParentAttr = JSON.stringify(currParent.attributes);
+    const elParentAttr = JSON.stringify(getNodeAttributes(currParent));
     const parentAttr = JSON.stringify(oldParent.attributes);
 
     if(currParent.tagName == oldParent.tagName && elParentAttr === parentAttr){

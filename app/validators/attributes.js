@@ -1,5 +1,4 @@
-import { getNodeAttributes } from "../domHandler/handler";
-
+import { getNodeAttributes } from "../shared/utils";
 
 export const getAttrsScore = (el, dataObj) => {
   let score = 0;

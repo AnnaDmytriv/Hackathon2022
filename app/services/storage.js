@@ -1,4 +1,4 @@
-import { getNodeAttributes } from "../domHandler/handler";
+import { getNodeAttributes } from "../shared/utils";
 
 export const getErrorElements = () => {
     return JSON.parse(localStorage.getItem("Errors"));
