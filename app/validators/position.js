@@ -4,16 +4,19 @@ export const getPositionScore = (currEl, oldEl)=>{
     const elmRect = currEl.getBoundingClientRect();
     const currX = elmRect.left - bodyRect.left;
     const currY = elmRect.top - bodyRect.top;
+
+    const oldX = oldEl.position.x;
+    const oldY = oldEl.position.y;
     
-    const yDiff = Math.abs(currY - oldEl.absY);
-    const xDiff = Math.abs(currX - oldEl.absX);
+    const yDiff = Math.abs(currY - oldY);
+    const xDiff = Math.abs(currX - oldX);
 
     let score;
-    if(currX == oldEl.absX && currY == oldEl.absY){
+    if(currX == oldX && currY == oldY){
         score = 10;
-    }else if(currX == oldEl.absX && currY != oldEl.absY){
+    }else if(currX == oldX && currY != oldY){
        score = yDiff > 200 ? 2 : 7;  
-    }else if(currX != oldEl.absX && currY == oldEl.absY){
+    }else if(currX != oldX && currY == oldY){
         score = xDiff > 200 ? 2 : 7;  
     }else{
         score = xDiff > 500 && yDiff > 500 ? 0 : 2; 

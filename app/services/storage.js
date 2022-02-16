@@ -2,6 +2,18 @@ export const getErrorElements = () => {
     return JSON.parse(localStorage.getItem("Errors"));
 };
 
+export const getFirstId = (el) => {
+
+    let id = el.getAttribute("id");
+
+    while(!id){
+        el = el.parentElement;
+        id = el.getAttribute("id");
+    }
+
+    return id;
+}
+
 export const saveErrorInDB = () => {
     const elWithError = document.querySelector("img[src='images/5.webp']").parentElement;
 
@@ -11,6 +23,8 @@ export const saveErrorInDB = () => {
     const absY = elmRect.top - bodyRect.top;
 
     const elementText = [...elWithError.childNodes].filter(node => node.nodeType === Node.TEXT_NODE).map(node => node.textContent).join('')
+
+    const contextId = getFirstId(elWithError);
 
     const error = {
         tagName: elWithError.tagName,
@@ -24,7 +38,8 @@ export const saveErrorInDB = () => {
         position: {
             x: absX,
             y: absY
-        }
+        },
+        contextId
     }
 
     localStorage.setItem("Errors", JSON.stringify([error]));
