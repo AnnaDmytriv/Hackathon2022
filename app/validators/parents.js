@@ -14,6 +14,8 @@ export const getParentsScore = (currParent, oldParent)=>{
     }else if(elParentAttr === parentAttr){
         const tagScore = getTagNameScore(currParent.tagName, oldParent.tagName);
         score = tagScore >= 5 ? 5 : 0;
+    }else{
+        score = 0;
     }
 
     return score;

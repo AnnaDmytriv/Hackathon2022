@@ -8,10 +8,10 @@ import { SCORE } from "../shared/consts";
 
 export const getFinalScore = (currEl, oldEl) => {
 
-    const attrScore = {
-        weight: SCORE.ATTR,
-        score: getAttrsScore(currEl, oldEl)
-    };
+    // const attrScore = {
+    //     weight: SCORE.ATTR,
+    //     score: getAttrsScore(currEl, oldEl)
+    // };
     const parentScore = {
         weight: SCORE.PARENT,
         score: getParentsScore(currEl, oldEl)
@@ -33,7 +33,7 @@ export const getFinalScore = (currEl, oldEl) => {
         score: getTextScore(currEl, oldEl)
     };
 
-    return weightScore([attrScore, parentScore, positionScore, tagScore, childrenScore, contentScore]);
+    return weightScore([parentScore, positionScore, tagScore, childrenScore, contentScore]);
 };
 
 const weightScore = (validatorsArray) => {
