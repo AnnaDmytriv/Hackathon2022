@@ -14,7 +14,7 @@ export const detectElement = (oldEl) => {
         }
     };
     console.log("Found element: ", mostCompatibleEl);
-    console.log("Max score: ", maxScore);
+    console.log("Max score: ", maxScore+"%");
     if (mostCompatibleEl) addBorder(mostCompatibleEl);
 };
 

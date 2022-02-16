@@ -13,13 +13,13 @@ export const getPositionScore = (currEl, oldEl)=>{
 
     let score;
     if(currX == oldX && currY == oldY){
-        score = 10;
+        score = 100;
     }else if(currX == oldX && currY != oldY){
-       score = yDiff > 200 ? 2 : 7;  
+       score = yDiff > 200 ? 20 : 70;  
     }else if(currX != oldX && currY == oldY){
-        score = xDiff > 200 ? 2 : 7;  
+        score = xDiff > 200 ? 20 : 70;  
     }else{
-        score = xDiff > 500 && yDiff > 500 ? 0 : 2; 
+        score = xDiff > 500 && yDiff > 500 ? 0 : 20; 
     }
 
     return score;
