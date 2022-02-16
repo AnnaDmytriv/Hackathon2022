@@ -8,10 +8,10 @@ import { getTextScore } from "../Validators/textContent";
 
 export const getFinalScore = (currEl, oldEl) => {
 
-    // const attrScore = {
-    //     weight: SCORE.ATTR,
-    //     score: getAttrsScore(currEl, oldEl)
-    // };
+    const attrScore = {
+        weight: SCORE.ATTR,
+        score: getAttrsScore(currEl, oldEl)
+    };
     const parentScore = {
         weight: SCORE.PARENT,
         score: getParentsScore(currEl, oldEl)
@@ -28,12 +28,12 @@ export const getFinalScore = (currEl, oldEl) => {
         weight: SCORE.CHILDREN,
         score: getChildrenScore(currEl, oldEl)
     };
-    // const contentScore = {
-    //     weight: SCORE.CONTENT,
-    //     score: getTextScore(currEl, oldEl)
-    // };
+    const contentScore = {
+        weight: SCORE.CONTENT,
+        score: getTextScore(currEl, oldEl)
+    };
 
-    return weightScore([parentScore, positionScore, tagScore, childrenScore]);
+    return weightScore([attrScore, parentScore, positionScore, tagScore, childrenScore, contentScore]);
 };
 
 const weightScore = (validatorsArray) => {
