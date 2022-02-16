@@ -7,7 +7,7 @@ export const detectElement = (oldEl) => {
 
     for (let el of elsInContext) {
         const score = getFinalScore(el, oldEl);
-        console.log(score);
+        console.log("score: ", score);
         if (score > maxScore) {
             maxScore = score;
             mostCompatibleEl = el;

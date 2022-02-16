@@ -16,8 +16,7 @@ export const getFirstId = (el) => {
     return id;
 }
 
-export const saveErrorInDB = () => {
-    const elWithError = document.querySelector("img[src='images/5.webp']").parentElement;
+export const saveErrorInDB = (elWithError) => {
 
     const bodyRect = document.body.getBoundingClientRect();
     const elmRect = elWithError.getBoundingClientRect();
