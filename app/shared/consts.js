@@ -1,6 +1,7 @@
-import {addAttrToParent, changeParentTag} from '../scripts/parents';
+import {addAttrToParent} from '../scripts/parents';
 import {rotateElements} from '../scripts/rotateImages';
 import {replaceTag} from '../shared/utils';
+import {changeChildrenText} from '../scripts/changeText';
 
 export const SCORE = {
     TAG: 50,
@@ -24,4 +25,5 @@ export const manipulators = {
     "addAttrToParent": addAttrToParent,
     "replaceTag": replaceTag,
     "rotateElements": rotateElements,
+    "changeChildrenText": changeChildrenText,
 }
