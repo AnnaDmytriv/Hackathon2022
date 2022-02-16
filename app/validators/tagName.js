@@ -6,11 +6,13 @@ export const getTagNameScore = (el1, el2) => {
     let score;
 
     if (currTagName == oldTagName) {
-        score = 10;
+        score = 100;
     } else if (currTagName == "DIV" && oldTagName == "SPAN" || currTagName == "SPAN" && oldTagName == "DIV") {
-        score = 7;
+        score = 90;
+    } else if (currTagName == "DIV" && oldTagName == "BUTTON" || currTagName == "BUTTON" && oldTagName == "DIV") {
+        score = 90;
     } else if (currTagName == "LINK" && oldTagName == "BUTTON" || currTagName == "BUTTON" && oldTagName == "LINK") {
-        score = 5;
+        score = 60;
     } else {
         score = 0;
         

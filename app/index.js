@@ -8,6 +8,7 @@ const elWithError = document.querySelector(
   "img[src='images/5.webp']"
 ).parentElement;
 
+
 saveErrorInDB(elWithError);
 const errors = getErrorElements();
 errors.forEach((err) => {
