@@ -1,3 +1,5 @@
+import { getNodeAttributes } from "../domHandler/handler";
+
 export const getErrorElements = () => {
     return JSON.parse(localStorage.getItem("Errors"));
 };
@@ -11,14 +13,15 @@ export const saveErrorInDB = () => {
     const absY = elmRect.top - bodyRect.top;
 
     const elementText = [...elWithError.childNodes].filter(node => node.nodeType === Node.TEXT_NODE).map(node => node.textContent).join('')
+    
 
     const error = {
         tagName: elWithError.tagName,
         parent: {
             tag: elWithError.parentElement.tagName,
-            attributes: elWithError.parentElement.attributes,
+            attributes: getNodeAttributes(elWithError.parentElement),
         },
-        attributes: [...elWithError.attributes],
+        attributes: getNodeAttributes(elWithError),
         children: elWithError.children.length,
         content: elementText,
         position: {

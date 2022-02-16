@@ -1,6 +1,9 @@
+import { getNodeAttributes } from "../domHandler/handler";
+
+
 export const getAttrsScore = (el, dataObj) => {
   let score = 0;
-  const attrs = el.attributes ? [...el.attributes] : [];
+  const attrs = getNodeAttributes(el);
 
   score = someAttrNames(attrs, dataObj);
 
@@ -8,28 +11,27 @@ export const getAttrsScore = (el, dataObj) => {
 };
 
 const someAttrNames = (attrs, dataObj) => {
-  let similarAttrsScore;
-  let similarAttrsValueScore;
-  const attrScore = 75 / attrs.length;
-  const classScore = 25 / attrs.length;
+  let similarAttrsScore = 0;
+  let similarAttrsValueScore = 0;
+  const attrsCount = Object.keys(attrs).length;
+  const attrScore = 75 / attrsCount;
+  const classScore = 25 / attrsCount;
   const { attributes } = dataObj;
 
-  const maxScore = attrScore * attrs.length + classScore * attrs.length;
+  const maxScore = attrScore * attrsCount + classScore * attrsCount;
 
-  attrs.forEach((attr, idx) => {
-    if (attributes.find(attr)) {
-      const scoreToAdd = attr.name === 'class' ? classScore : attrScore;
-      similarAttrsScore += classScore;
-      if (sameAttrValue(attr, attributes[idx])) {
-        similarAttrsValueScore += scoreToAdd;
+  for (const key in attributes) {
+    if (Object.hasOwnProperty.call(attributes, key)) {
+      const scoreToAdd = key === 'class' ? classScore : attrScore;
+      const value = attributes[key];
+      if (key in attrs) { // has same attribute name
+        if(attrs[key] === value){ // has same attribute value
+          similarAttrsValueScore += scoreToAdd;
+        }
+        similarAttrsScore += scoreToAdd;
       }
-      similarAttrsScore += scoreToAdd;
     }
-  });
+  }
 
   return (similarAttrsScore + similarAttrsValueScore) / maxScore;
-};
-
-const sameAttrValue = (attr1, attr2) => {
-  return attr1.value === attr2.value;
 };
