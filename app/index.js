@@ -1,14 +1,17 @@
+import { addAttrToParent } from './scripts/parents';
 import { detectElement } from './services/elementDetector';
 import { getErrorElements, saveErrorInDB } from './services/storage';
 import { manipulators } from './shared/consts';
+import { samePosition } from './scripts/position';
 
 const elWithError = document.querySelector(
   "img[src='images/5.webp']"
 ).parentElement;
 
-
 saveErrorInDB(elWithError);
+
 const errors = getErrorElements();
+
 errors.forEach((err) => {
   detectElement(err);
 });

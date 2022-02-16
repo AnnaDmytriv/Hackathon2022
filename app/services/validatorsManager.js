@@ -4,7 +4,7 @@ import { getPositionScore } from "../validators/position";
 import { getTagNameScore } from "../Validators/tagName";
 import { getChildrenScore } from "../Validators/children";
 import { getTextScore } from "../Validators/textContent";
-import { SCORE, VALIDATORS } from "../shared/consts";
+import { SCORE } from "../shared/consts";
 
 export const getFinalScore = (currEl, oldEl) => {
 
