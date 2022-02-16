@@ -32,5 +32,5 @@ function manipulateDom(manipulation) {
 
 window._HACKATHON = manipulateDom;
 console.log(
-  'window._HACKATHON("addAttrToParent") || window._HACKATHON("rotateElements")'
+  'window._HACKATHON("addAttrToParent") || window._HACKATHON("replaceTag") || window._HACKATHON("rotateElements")'
 );

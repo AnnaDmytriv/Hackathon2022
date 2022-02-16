@@ -1,4 +1,7 @@
-export const getTagNameScore = (currTagName, oldTagName) => {
+export const getTagNameScore = (el1, el2) => {
+
+    const currTagName = el1.tagName;
+    const oldTagName = el2.tagName;
 
     let score;
 
@@ -12,6 +15,7 @@ export const getTagNameScore = (currTagName, oldTagName) => {
         score = 60;
     } else {
         score = 0;
+        
     }
 
     return score;

@@ -10,42 +10,58 @@ export const getFinalScore = (currEl, oldEl) => {
 
     const attrScore = {
         weight: SCORE.ATTR,
+        name: "attrScore",
         score: getAttrsScore(currEl, oldEl)
     };
     const parentScore = {
         weight: SCORE.PARENT,
+        name: "parentScore",
         score: getParentsScore(currEl, oldEl)
     };
     const positionScore = {
         weight: SCORE.POSITION,
+        name: "positionScore",
         score: getPositionScore(currEl, oldEl)
     };
     const tagScore = {
         weight: SCORE.TAG,
-        score: getTagNameScore(currEl.tagName, oldEl.tagName)
+        name: "tagScore",
+        score: getTagNameScore(currEl, oldEl)
     };
     const childrenScore = {
         weight: SCORE.CHILDREN,
+        name: "childrenScore",
         score: getChildrenScore(currEl, oldEl)
     };
     const contentScore = {
         weight: SCORE.CONTENT,
+        name: "contentScore",
         score: getTextScore(currEl, oldEl)
     };
 
-    return weightScore([attrScore, parentScore, positionScore, tagScore, childrenScore, contentScore]);
+    return weightScore({parentScore, positionScore, tagScore, childrenScore, contentScore, attrScore});
 };
 
-const weightScore = (validatorsArray) => {
+const weightScore = (validators) => {
     let finalScore = 0;
-    validatorsArray.forEach(validator => {
-        const weight = validator.weight;
-        const score = validator.score;
-        finalScore += percentage(weight, score);
-    });
+
+    for (const validator in validators) {
+            const {weight, name, score} = validators[validator];
+            checkSpecialConditions(validator, validators);
+            finalScore += percentage(weight, score);        
+    }
+
     return finalScore;
 };
 
 const percentage = (percent, score) => {
     return score * percent / 100;
 };
+
+const checkSpecialConditions = (validator, validators) => {
+    const {weight, name, score} = validators[validator];
+    if (name === "tagScore" && score < 5 && validators["childrenScore"].score > 5 && validators["attrScore"].score > 5) {
+        console.log("this is probably the same element");
+    }
+
+}

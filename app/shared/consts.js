@@ -1,6 +1,6 @@
-import {addAttrToParent} from '../scripts/parents'
-import { samePosition } from '../scripts/position'
-import {rotateElements} from '../scripts/rotateImages'
+import {addAttrToParent} from '../scripts/parents';
+import {rotateElements} from '../scripts/rotateImages';
+import {replaceTag} from '../shared/utils';
 
 export const SCORE = {
     TAG: 50,
@@ -11,8 +11,17 @@ export const SCORE = {
     CONTENT: 10
 }
 
+export const VALIDATORS = {
+    TAG: "TAG",
+    POSITION: "POSITION",
+    ATTR: "ATTR",
+    PARENT: "PARENT",
+    CHILDREN: "CHILDREN",
+    CONTENT: "CONTENT"
+}
+
 export const manipulators = {
     "addAttrToParent": addAttrToParent,
+    "replaceTag": replaceTag,
     "rotateElements": rotateElements,
-    "samePosition": samePosition
 }
