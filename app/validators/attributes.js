@@ -12,12 +12,18 @@ export const getAttrsScore = (el, dataObj) => {
 const someAttrNames = (attrs, dataObj) => {
   let similarAttrsScore = 0;
   let similarAttrsValueScore = 0;
-  const attrsCount = Object.keys(attrs).length;
-  const attrScore = 75 / attrsCount;
-  const classScore = 25 / attrsCount;
   const { attributes } = dataObj;
+  const elAttrCount = Object.keys(attributes).length;
+  const subAttrsCount = Object.keys(attrs).length;
+  const attrScore = 75 / subAttrsCount;
+  const classScore = 25 / subAttrsCount;
+  
 
-  const maxScore = attrScore * attrsCount + classScore * attrsCount;
+  if (subAttrsCount !== elAttrCount && (elAttrCount === 0 || subAttrsCount === 0)) {
+    return 0;
+  }
+
+  const maxScore = attrScore * subAttrsCount + classScore * subAttrsCount;
 
   for (const key in attributes) {
     if (Object.hasOwnProperty.call(attributes, key)) {
