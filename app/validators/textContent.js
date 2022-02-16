@@ -5,7 +5,7 @@ export const getTextScore = (el, dataObj) => {
     .map((node) => node.textContent)
     .join('');
 
-  score = similarity(content, currentElementText) * 100;
+  const score = similarity(content, currentElementText) * 100;
 
   return score;
 };
