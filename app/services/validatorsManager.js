@@ -6,10 +6,10 @@ import { getTagNameScore } from "../Validators/tagName";
 
 export const getFinalScore = (currEl, oldEl) => {
 
-    const attrScore = {
-        weight: SCORE.ATTR,
-        score: getAttrsScore(currEl, oldEl)
-    };
+    // const attrScore = {
+    //     weight: SCORE.ATTR,
+    //     score: getAttrsScore(currEl, oldEl)
+    // };
     const parentScore = {
         weight: SCORE.PARENT,
         score: getParentsScore(currEl, oldEl)
@@ -20,20 +20,20 @@ export const getFinalScore = (currEl, oldEl) => {
     };
     const tagScore = {
         weight: SCORE.TAG,
-        score: getTagNameScore(currEl, oldEl)
+        score: getTagNameScore(currEl.tagName, oldEl.tagName)
     };
 
-    return weightScore([attrScore, parentScore, positionScore, tagScore]);
+    return weightScore([parentScore, positionScore, tagScore]);
 };
 
 const weightScore = (validatorsArray) => {
-    let score = 0;
+    let finalScore = 0;
     validatorsArray.forEach(validator => {
-        const per = validator.percent;
+        const weight = validator.weight;
         const score = validator.score;
-        score += percentage(per, score);
+        finalScore += percentage(weight, score);
     });
-    return score;
+    return finalScore;
 };
 
 const percentage = (percent, score) => {
