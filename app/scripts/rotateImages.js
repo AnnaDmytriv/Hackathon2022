@@ -1,7 +1,7 @@
-export const rotateElements = () => {
+export const rotateElements = (el) => {
   const gallery = document.getElementById('gallery');
   const products = [...gallery.childNodes];
-    
+
   setTimeout(() => {
     products.forEach((product) => {
       gallery.removeChild(product);
