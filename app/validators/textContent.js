@@ -1,4 +1,4 @@
-const getTextScore = (el, dataObj) => {
+export const getTextScore = (el, dataObj) => {
   const { content } = dataObj;
   const currentElementText = [...el.childNodes]
     .filter((node) => node.nodeType === Node.TEXT_NODE)

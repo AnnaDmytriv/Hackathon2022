@@ -1,4 +1,4 @@
-const getChildrenScore = (el, dataObj) => {
+export const getChildrenScore = (el, dataObj) => {
   let score = 0;
   const currentChildren = el.children.length;
   const { children } = dataObj;
