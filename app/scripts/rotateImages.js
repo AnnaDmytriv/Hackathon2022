@@ -7,7 +7,6 @@ export const rotateElements = (el) => {
       gallery.removeChild(product);
     });
     shuffle(products);
-    console.log('something!');
     products.forEach((product) => {
       gallery.appendChild(product);
     });
